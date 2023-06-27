@@ -1,11 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useState } from "react";
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from "react-hot-toast";
 
 import { LoginSchema, loginSchema } from "@/lib/validation/login-validation";
+
+import axiosInstance from '@/utils/axiosInstance'
 
 interface FormValues {
   studentId: string;
@@ -48,7 +49,7 @@ const useLogin = () => {
         studentId:data.studentId,
         password:data.password,
       }
-      const user = await axios.post(`/api/login`, payload)
+      const user = await axiosInstance.post(`/api/login`, payload)
 
 
         //change response
