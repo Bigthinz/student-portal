@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     required: [true, 'last name is required in this field'],
     unique: false,
   },
-studentId: {
+  studentId: {
     type: String,
     required: [true, 'course name is required in this field'],
     unique: true,
@@ -24,10 +24,7 @@ studentId: {
     required: [true, 'course code is required in this field'],
     unique: false,
   },
- 
- 
 });
-
 
 userSchema.pre('save', async function (next) {
   //ONLY RUN IF THE PASSWORD WAS ACTUALLY MODIFIED
@@ -48,7 +45,5 @@ userSchema.methods.correctPassword = async function (
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
-
-
 
 module.exports = mongoose.models.User || mongoose.model('User', userSchema);
