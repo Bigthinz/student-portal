@@ -186,7 +186,7 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  const handleRadioChange = (value) => {
+  const handleRadioChange = (value: any) => {
     const payload = {
       name: value.name,
       code: value.code,
@@ -429,7 +429,7 @@ export default function Dashboard() {
                                 </tbody>
                               </table>
 
-                              {electives === 0 ? (
+                              {electives.length === 0 ? (
                                 <></>
                               ) : (
                                 <>
