@@ -131,7 +131,7 @@ function classNames(...classes: string[]) {
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
 
-  const [value, setValue] = useLocalStorage('auth-token');
+  const [value, setValue] = useLocalStorage('auth-token', '');
 
   const user = {
     name:
