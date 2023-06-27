@@ -61,7 +61,7 @@ const useLogin = () => {
             localStorage.setItem('auth-token', JSON.stringify(user.data.data));
             // setUserData(userDataObject.data);
             setLoadingState(false);
-            router.push('/dashboard');
+            router.replace('/dashboard');
           }
         }
 
