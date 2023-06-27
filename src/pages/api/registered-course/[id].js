@@ -15,11 +15,7 @@ export default async function login(req, res, next) {
       const courses = await RegisterCourse.find({ studentId });
 
       res.status(200).json({
-        status: 'success',
-        length: courses.length,
-        data: {
-          courses,
-        },
+        courses,
       });
     } catch (err) {
       console.log(err);

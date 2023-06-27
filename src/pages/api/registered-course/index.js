@@ -1,5 +1,5 @@
-import RegisterCourse from '../../../models/registeredCourses';
-import dbConnect from '../../../utils/dbConnect';
+import RegisterCourse from '@/models/registeredCourses';
+import dbConnect from '@/utils/dbConnect';
 
 export default async function index(req, res, next) {
   const { method } = req;
@@ -11,11 +11,7 @@ export default async function index(req, res, next) {
     const course = await RegisterCourse.create(req.body);
 
     res.status(201).json({
-      status: 'success',
-
-      data: {
-        course,
-      },
+      course,
     });
   }
 

@@ -1,18 +1,14 @@
-
 import bcrypt from 'bcrypt';
 
-import User from '../../models/user';
-import dbConnect from '../../utils/dbConnect';
-
+import User from '@/models/user';
+import dbConnect from '@/utils/dbConnect';
 
 export default async function login(req, res, next) {
   const { method } = req;
 
   await dbConnect();
-  console.log('dbconneted')
+  console.log('dbconneted');
 
-
-  
   if (method === 'POST') {
     const { studentId, password } = req.body;
     const user = await User.findOne({ studentId }).select('+password');
@@ -28,29 +24,26 @@ export default async function login(req, res, next) {
     }
     res.status(201).json({
       status: 'success',
-    
+
       data: {
         user,
       },
     });
   }
 
-
   if (method === 'GET') {
     try {
       const user = await User.find();
-   
+
       res.status(200).json({
-          status:'sucess',
-          length: user.length,
-          data:{
-              user
-          }
-      })
-    }catch(err) {
-      console.log(err)
+        status: 'sucess',
+        length: user.length,
+        data: {
+          user,
+        },
+      });
+    } catch (err) {
+      console.log(err);
     }
+  }
 }
-}
-
-
