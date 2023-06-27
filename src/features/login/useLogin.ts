@@ -57,7 +57,7 @@ const useLogin = () => {
             toast.success('User logged in successfully');
 
             // console.log(loginAuth);
-            localStorage.setItem('auth-token', JSON.stringify(user));
+            localStorage.setItem('auth-token', JSON.stringify(user.data.data));
             // setUserData(userDataObject.data);
             setLoadingState(false);
             router.push('/dashboard');

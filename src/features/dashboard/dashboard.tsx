@@ -3,8 +3,9 @@ import {
   AcademicCapIcon,
   EllipsisVerticalIcon,
 } from '@heroicons/react/20/solid';
-import { useLocalStorage } from '@react-hooks-library/core';
 import { Fragment, useState } from 'react';
+
+import { getFromLocalStorage } from '@/lib/helper';
 
 const profile = {
   name: 'Ricardo Cooper',
@@ -131,17 +132,22 @@ function classNames(...classes: string[]) {
 export default function Dashboard() {
   const [open, setOpen] = useState(false);
 
-  const [value, setValue] = useLocalStorage('auth-token', '');
+  const value = getFromLocalStorage('auth-token');
 
   const user = {
-    name:
-      value?.data?.data?.user?.firstname +
-      ' ' +
-      value?.data?.data?.user?.lastname,
-    index: value?.data?.data?.user?.studentId,
+    name: '' as string,
+    index: '' as string,
   };
 
-  console.log(user);
+  if (value && typeof value === 'string') {
+    const parsedValue = JSON.parse(value);
+
+    const userData = parsedValue;
+
+    user.name = `${userData.user.firstname} ${userData.user.lastname}`;
+    user.index = userData.user.studentId;
+    console.log(userData);
+  }
 
   return (
     <div>
